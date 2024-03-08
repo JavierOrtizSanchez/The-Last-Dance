@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta bateador</title>
+<!--
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+-->	
+</head>
+    
+<body>
+<!--
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+-->	
+<div>
+	<header>
+		<h1>Panel de control</h1>
+	</header>
+	<main>				
+	<ul>
+		<li><a href="index.php">Inicio</a></li>
+		<li><a href="add.html">Alta</a></li>
+	</ul>
+	<h2>Alta bateador</h2>
+<!--Formulario de alta. 
+Al hacer click en el botón Agregar, llama a la página: add.php-->
+	<form action="add.php" method="post">
+		<div>
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" id="name" placeholder="nombre" required>
+		</div>
+
+		<div>
+			<label for="apellido">Apellido</label>
+			<input type="text" name="apellido" id="surname" placeholder="apellido" required>
+		</div>
+
+		<div>
+			<label for="home_runs">Home runs</label>
+			<input type="number" name="home_runs" id="home_runs" placeholder="home runs" required>
+		</div>
+
+		<div>
+			<label for="promedio_bateo">Promedio bateo</label>
+			<input type="text" name="promedio_bateo" id="promedio_bateo" placeholder="promedio bateo" required>
+		</div>
+
+		<div>
+			<label for="carreras_impulsadas">Carreras impulsadas</label>
+			<input type="number" name="carreras_impulsadas" id="carreras_impulsadas" placeholder="carreras impulsadas" required>
+		</div>
+
+		<div>
+			<input type="submit" name="inserta" value="Agregar">
+			<input type="button" value="Cancelar" onclick="location.href='index.php'">
+		</div>
+	</form>
+	
+	</main>	
+	<footer>
+	<br>Creado por Javier Ortiz &copy; 2024
+  	</footer>
+</div>
+</body>
+</html>
