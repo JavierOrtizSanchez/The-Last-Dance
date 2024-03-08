@@ -31,26 +31,36 @@ Transacción de datos utilizando el método: POST
 if(isset($_POST['inserta'])) 
 {
 //Obtiene los datos (name, surname y age) a partir del formulario de alta por el método POST (Se envía a través del body del HTTP Request. No aparece en la URL)
-	$name = mysqli_real_escape_string($mysqli, $_POST['name']);
-	$surname = mysqli_real_escape_string($mysqli, $_POST['surname']);
-	$age = mysqli_real_escape_string($mysqli, $_POST['age']);
+	$apellido = mysqli_real_escape_string($mysqli, $_POST['apellido']);
+	$nombre = mysqli_real_escape_string($mysqli, $_POST['nombre']);
+	$home_runs = mysqli_real_escape_string($mysqli, $_POST['home_runs']);
+	$promedio_bateo = mysqli_real_escape_string($mysqli, $_POST['promedio_bateo']);
+	$carreras_impulsadas = mysqli_real_escape_string($mysqli, $_POST['carreras_impulsadas']);
 /*Con mysqli_real_scape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL.
 Esta función es usada para crear una cadena SQL legal que se puede usar en una sentencia SQL. 
 Los caracteres codificados son NUL (ASCII 0), \n, \r, \, ', ", y Control-Z.*/
 
 //Comprueba si existen campos vacíos
-	if(empty($name) || empty($age) || empty($surname)) 
+	if(empty($apellido) || empty($nombre) || empty($home_runs) || empty($promedio_bateo) || empty($carreras_impulsadas)) 
 	{
-		if(empty($name)) {
-			echo "<div>Campo nombre vacío.</div>";
+		if(empty($apellido)) {
+			echo "<div>Campo apellido vacío.</div>";
 		}
 
-		if(empty($surname)) {
-			echo "<div>Campo apellido vacío</div>";
+		if(empty($nombre)) {
+			echo "<div>Campo nombre vacío</div>";
 		}
 
-		if(empty($age)) {
-			echo "<div>Campo edad vacío.</div>";
+		if(empty($home_runs)) {
+			echo "<div>Campo home runs vacío.</div>";
+		}
+
+		if(empty($promedio_bateo)) {
+			echo "<div>Campo promedio bateo vacío.</div>";
+		}
+
+		if(empty($carreras_impulsadas)) {
+			echo "<div>Campo carreras impulsadas vacío.</div>";
 		}
 //Enlace a la página anterior
 		echo "<a href='javascript:self.history.back();'>Volver atras</a>";
@@ -58,13 +68,13 @@ Los caracteres codificados son NUL (ASCII 0), \n, \r, \, ', ", y Control-Z.*/
 	else 
 	{
 //Prepara una sentencia SQL para su ejecución. En este caso el alta de un registro de la BD.		
-		$stmt = mysqli_prepare($mysqli, "INSERT INTO users (name,surname,age) VALUES(?,?,?)");
+		$stmt = mysqli_prepare($mysqli, "INSERT INTO mejores_bateadores (apellido,nombre,home_runs,promedio_bateo,carreras_impulsadas) VALUES(?,?,?,?,?)");
 /*Enlaza variables como parámetros a una setencia preparada. 
 i: La variable correspondiente tiene tipo entero
 d: La variable correspondiente tiene tipo doble
 s:	La variable correspondiente tiene tipo cadena
 */		
-		mysqli_stmt_bind_param($stmt, "ssi", $name, $surname, $age);
+		mysqli_stmt_bind_param($stmt, "ssi", $apellido, $nombre, $home_runs, $promedio_bateo , $carreras_impulsadas);
 //Ejecuta una consulta preparada		
 		mysqli_stmt_execute( $stmt);
 //Libera la memoria donde se almacenó el resultado		

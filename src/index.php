@@ -8,7 +8,7 @@ DB_PASSWORD: Contraseña del usuario e la BD
 include_once("config.php");
 
 //Consulta de selección. Selecciona todos los usuarios ordenados de manera descendente por el campo id
-$result = mysqli_query($mysqli, "SELECT * FROM mejores_bateadores ORDER BY codigo DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM mejores_bateadores ORDER BY codigo ASC");
 
 ?>
 
@@ -72,8 +72,8 @@ $res["age"] = "23";
 		echo "<td>".$res['carreras_impulsadas']."</td>\n";
 		echo "<td>";
 //En la última columna se añader dos enlaces para editar y modificar el registro correspondiente. Se le pasa por el método GET el id del registro		
-		echo "<a href=\"edit.php?id=$res[codigo]\">Editar</a>\n";
-		echo "<a href=\"delete.php?id=$res[codigo]\" onClick=\"return confirm('¿Está segur@ que desea eliminar el registro?')\" >Eliminar</a></td>\n";
+		echo "<a href=\"edit.php?id=$res[id]\">Editar</a>\n";
+		echo "<a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('¿Está segur@ que desea eliminar el registro?')\" >Eliminar</a></td>\n";
 		echo "</td>";
 		echo "</tr>\n";
 	}

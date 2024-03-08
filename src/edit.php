@@ -8,33 +8,43 @@ Transacción de datos utilizando el método: POST
 */
 if(isset($_POST['modifica'])) {
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
-	$name = mysqli_real_escape_string($mysqli, $_POST['name']);
-	$surname = mysqli_real_escape_string($mysqli, $_POST['surname']);
-	$age = mysqli_real_escape_string($mysqli, $_POST['age']);
+	$apellido = mysqli_real_escape_string($mysqli, $_POST['apellido']);
+	$nombre = mysqli_real_escape_string($mysqli, $_POST['nombre']);
+	$home_runs = mysqli_real_escape_string($mysqli, $_POST['home_runs']);
+	$promedio_bateo = mysqli_real_escape_string($mysqli, $_POST['promedio_bateo']);
+	$carreras_impulsadas = mysqli_real_escape_string($mysqli, $_POST['carreras_impulsadas']);
 
-	if(empty($name) || empty($surname) || empty($age))	{
-		if(empty($name)) {
-			echo "<font color='red'>Campo nombre vacío.</font><br/>";
-		}
-
-		if(empty($surname)) {
+	if(empty($apellido) || empty($nombre) || empty($home_runs) || empty($promedio_bateo) || empty($carreras_impulsadas))	{
+		if(empty($apellido)) {
 			echo "<font color='red'>Campo apellido vacío.</font><br/>";
 		}
 
-		if(empty($age)) {
-			echo "<font color='red'>Campo edad vacío.</font><br/>";
+		if(empty($nombre)) {
+			echo "<font color='red'>Campo nombre vacío.</font><br/>";
+		}
+
+		if(empty($home_runs)) {
+			echo "<font color='red'>Campo home runs vacío.</font><br/>";
+		}
+
+		if(empty($promedio_bateo)) {
+			echo "<font color='red'>Campo promedio bateo vacío.</font><br/>";
+		}
+
+		if(empty($carreras_impulsadas)) {
+			echo "<font color='red'>Campo carreras impulsadas vacío.</font><br/>";
 		}
 	} //fin si
 	else 
 	{
 //Prepara una sentencia SQL para su ejecución. En este caso una modificación de un registro de la BD.				
-		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,surname=?,age=? WHERE id=?");
+		$stmt = mysqli_prepare($mysqli, "UPDATE mejores_bateadores SET apellido=?,nombre=?,home_runs=?,promedio_bateo=?,carreras_impulsadas=? WHERE id=?");
 /*Enlaza variables como parámetros a una setencia preparada. 
 i: La variable correspondiente tiene tipo entero
 d: La variable correspondiente tiene tipo doble
 s:	La variable correspondiente tiene tipo cadena
 */				
-		mysqli_stmt_bind_param($stmt, "ssii", $name, $surname, $age, $id);
+		mysqli_stmt_bind_param($stmt, "ssii", $apellido, $nombre, $home_runs, $promedio_bateo, $carreras_impulsadas , $id);
 //Ejecuta una consulta preparada			
 		mysqli_stmt_execute($stmt);
 //Libera la memoria donde se almacenó el resultado
