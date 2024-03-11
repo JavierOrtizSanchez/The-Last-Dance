@@ -44,7 +44,7 @@ i: La variable correspondiente tiene tipo entero
 d: La variable correspondiente tiene tipo doble
 s:	La variable correspondiente tiene tipo cadena
 */				
-		mysqli_stmt_bind_param($stmt, "ssii", $apellido, $nombre, $home_runs, $promedio_bateo, $carreras_impulsadas , $id);
+		mysqli_stmt_bind_param($stmt, "ssisii", $apellido, $nombre, $home_runs, $promedio_bateo, $carreras_impulsadas , $id);
 //Ejecuta una consulta preparada			
 		mysqli_stmt_execute($stmt);
 //Libera la memoria donde se almacenó el resultado
@@ -66,13 +66,13 @@ $id = mysqli_real_escape_string($mysqli, $id);
 
 
 //Prepara una sentencia SQL para su ejecución. En este caso selecciona el registro a modificar y lo muestra en el formulario.				
-$stmt = mysqli_prepare($mysqli, "SELECT name, surname, age FROM users WHERE id=?");
+$stmt = mysqli_prepare($mysqli, "SELECT apellido, nombre, home_runs, promedio_bateo, carreras_impulsadas FROM mejores_bateadores WHERE id=?");
 //Enlaza variables como parámetros a una setencia preparada. 
 mysqli_stmt_bind_param($stmt, "i", $id);
 //Ejecuta una consulta preparada
 mysqli_stmt_execute($stmt);
 //Enlaza variables a una setencia preparada para el almacenamiento del resultado
-mysqli_stmt_bind_result($stmt, $name, $surname, $age);
+mysqli_stmt_bind_result($stmt, $apellido, $nombre, $home_runs, $promedio_bateo, $carreras_impulsadas);
 //Obtiene el resultado de una sentencia SQL preparada en las variables enlazadas
 mysqli_stmt_fetch($stmt);
 //Libera la memoria donde se almacenó el resultado		
@@ -88,7 +88,7 @@ mysqli_close($mysqli);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Modificación trabajador/a</title>
+	<title>Modificación bateador</title>
 <!--	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 -->
@@ -108,23 +108,33 @@ mysqli_close($mysqli);
 		<li><a href="index.php" >Inicio</a></li>
 		<li><a href="add.html" >Alta</a></li>
 	</ul>
-	<h2>Modificación trabajador/a</h2>
+	<h2>Modificación bateador</h2>
 <!--Formulario de edición. 
 Al hacer click en el botón Guardar, llama a esta misma página: edit.php-->
 	<form action="edit.php" method="post">
 		<div>
-			<label for="name">Nombre</label>
-			<input type="text" name="name" id="name" value="<?php echo $name;?>" required>
+			<label for="Apellido">Apellido</label>
+			<input type="text" name="apellido" id="apellido" value="<?php echo $apellido;?>" required>
 		</div>
 
 		<div>
-			<label for="surname">Apellido</label>
-			<input type="text" name="surname" id="surname" value="<?php echo $surname;?>" required>
+			<label for="Nombre">Nombre</label>
+			<input type="text" name="nombre" id="nombre" value="<?php echo $nombre;?>" required>
 		</div>
 
 		<div>
-			<label for="age">Edad</label>
-			<input type="number" name="age" id="age" value="<?php echo $age;?>" required>
+			<label for="home_runs">Home runs</label>
+			<input type="number" name="home_runs" id="home_runs" value="<?php echo $home_runs;?>" required>
+		</div>
+
+		<div>
+			<label for="promedio_bateo">Promedio bateo</label>
+			<input type="text" name="promedio_bateo" id="promedio_bateo" value="<?php echo $promedio_bateo;?>" required>
+		</div>
+
+		<div>
+			<label for="carreras_impulsadas">Carreras impulsadas</label>
+			<input type="number" name="carreras_impulsadas" id="carreras_impulsadas" value="<?php echo $carreras_impulsadas;?>" required>
 		</div>
 
 		<div >
