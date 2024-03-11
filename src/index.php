@@ -8,7 +8,7 @@ DB_PASSWORD: Contraseña del usuario e la BD
 include_once("config.php");
 
 //Consulta de selección. Selecciona todos los usuarios ordenados de manera descendente por el campo id
-$result = mysqli_query($mysqli, "SELECT * FROM mejores_bateadores ORDER BY codigo ASC");
+$result = mysqli_query($mysqli, "SELECT * FROM mejores_bateadores ORDER BY home_runs DESC");
 
 ?>
 
